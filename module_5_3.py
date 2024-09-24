@@ -1,4 +1,11 @@
 class House:
+    houses_history = []
+    def __new__(cls, *args, **kwargs):
+        args = args[0]
+        cls.houses_history.append(args)
+        return object.__new__(cls)
+
+
     def __init__(self, name, number_of_floors):
         self.name = name
         self.floors = number_of_floors
@@ -9,6 +16,8 @@ class House:
             else:
                 print('Такого этажа не существует')
                 break
+    def __del__(self):
+        print(f'{self.name} был снесён, но он останется в истории')
     def __len__(self):
         return self.floors
     def __str__(self):
@@ -16,33 +25,43 @@ class House:
     def __add__(self, value):
         if isinstance(value, int):
             self.floors = self.floors + value
+        elif isinstance(value, House):
+            self.floors = self.floors + value.floors
         return self
     def __eq__(self, other):
         if isinstance(other, House):
             return self.floors == other.floors
+        elif isinstance(other, House):
+            return self.floors == other
     def __lt__(self, other):
         if isinstance(other, House):
             return self.floors < other.floors
+        elif isinstance(other, int):
+            return self.floors < other
     def __gt__(self, other):
         if isinstance(other, House):
             return self.floors > other.floors
+        elif isinstance(other, int):
+            return self.floors > other
     def __le__(self, other):
         if isinstance(other, House):
             return self.floors <= other.floors
+        elif isinstance(other, int):
+            return self.floors <= other
     def __ge__(self, other):
         if isinstance(other, House):
             return self.floors >= other.floors
+        elif isinstance(other, int):
+            return self.floors >= other
     def __ne__(self, other):
         if isinstance(other, House):
             return self.floors != other.floors
+        elif isinstance(other, int):
+            return self.floors != other
     def __iadd__(self, value):
-        if isinstance(value, int):
-            self.floors += value
-        return self
+        return self.__add__(value)
     def __radd__(self, value):
-        if isinstance(value, int):
-            self.floors = value + self.floors
-        return self
+        return self.__add__(value)
 
 
 a = House('ЖК Эльбрус', 10)
