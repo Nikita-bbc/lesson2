@@ -1,0 +1,16 @@
+2024-12-25 00:16:43,158 / WARNING / Имя некорректно, Имя может быть только строкой, передано int
+Traceback (most recent call last):
+  File "C:\Users\Nikita\PycharmProjects\pythonProject\Runner_tests\tests_12_4.py", line 25, in test_run
+    runner = new_runner.Runner(52)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nikita\PycharmProjects\pythonProject\Runner_tests\new_runner.py", line 9, in __init__
+    raise TypeError(f'Имя может быть только строкой, передано {type(name).__name__}')
+TypeError: Имя может быть только строкой, передано int
+2024-12-25 00:16:43,159 / WARNING / Неверная скорость для Runner, Скорость не может быть отрицательной, сейчас -5
+Traceback (most recent call last):
+  File "C:\Users\Nikita\PycharmProjects\pythonProject\Runner_tests\tests_12_4.py", line 16, in test_walk
+    runner = new_runner.Runner('Egor', -5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nikita\PycharmProjects\pythonProject\Runner_tests\new_runner.py", line 14, in __init__
+    raise ValueError(f'Скорость не может быть отрицательной, сейчас {speed}')
+ValueError: Скорость не может быть отрицательной, сейчас -5
